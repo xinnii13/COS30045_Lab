@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="description" content="Data Visualisation Exercise 1" />
+	<meta name="keywords" content="HTML, CSS" />
+	<meta name="author" content="Your name here" />
+
+	<title>Task 2.2 D3 Data Binding</title>
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+	<style>
+		rect{
+			fill: black;
+		}
+	</style>
+
+
+</head>
+
+
+<body>
+
+	<h1>Drawing with Data</h1>
+
+	<script>
+		var svg = d3.select("body")
+			.append("svg")
+			.attr("width", 960)
+			.attr("height", 200);
+
+		var data = [22, 32, 21, 23, 10, 22, 11, 19, 30, 50, 19, 30];
+
+		var y = d3.scaleLinear()
+			.domain([0, d3.max(data)])
+			.range([0, 100]);
+
+		svg.selectAll("rect").data(data).enter()
+			.append("rect")
+			.attr("width", 50)
+			.attr("height", function (d, i) { return y(d); })
+			.attr("x", function (d, i) { return i * 55; })
+			.attr("y", function (d) { return 200 - y(d); });
+
+	</script>
+
+	<p>
+		Lab task 2.1 <a href="lab2-1.html">Home</a>
+		<br>Lab task 2.3 <a href="lab2-3.html">Scatter Plot</a>
+		<br>Lab task 2.4 <a href="lab2-4.html">Data Import</a>
+	</p>
+
+
+
+
+	<footer style="color:grey">COS30045 Data Visualisation<br>Xin Ni</footer>
+
+</body>
+</html>
